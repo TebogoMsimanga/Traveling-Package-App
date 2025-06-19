@@ -37,13 +37,13 @@ fun AddingItems(
 ) {
 
     //variables for storing data that can change
-    var name by remember { mutableStateOf("") }
+    var song by remember { mutableStateOf("") }
     var artist by remember { mutableStateOf("") }
     var rating by remember { mutableStateOf("") }
     var comment by remember { mutableStateOf("") }
 
     //variables for storing errors
-    var nameError by remember { mutableStateOf<String?>(null) }
+    var songError by remember { mutableStateOf<String?>(null) }
     var artistError by remember { mutableStateOf<String?>(null) }
     var ratingError by remember { mutableStateOf<String?>(null) }
     var commentError by remember { mutableStateOf<String?>(null) }
@@ -60,18 +60,18 @@ fun AddingItems(
 
             {
                 OutlinedTextField(
-                    value = name,
+                    value = song,
                     onValueChange = {
-                        name = it;
-                        nameError = null
+                        song = it;
+                        songError = null
                     },
                     label = { Text("name") },
-                    isError = nameError != null,
+                    isError = songError != null,
                     modifier = Modifier
                         .fillMaxWidth()
                 )
 
-                nameError?.let {
+                songError?.let {
                     Text(
                         text = it,
                         color = MaterialTheme.colorScheme.error,
@@ -153,13 +153,13 @@ fun AddingItems(
                 Row {
                     Button(
                         onClick = {
-                            nameError = null
+                            songError = null
                             artistError =null
                             commentError = null
 
                             var isValid = true
-                            if (name.isBlank()) {
-                                nameError = "Name field is empty"
+                            if (song.isBlank()) {
+                                songError = ""
                                 isValid = false
 
                             }
@@ -185,7 +185,7 @@ fun AddingItems(
                                 val intRating = null
                                 onAddItem(
                                     PackingItem(
-                                        song = name,
+                                        song = song,
                                         artist = artist,
                                         // this field only accepts positive numbers
                                         //app fails to process if its not a positive number
