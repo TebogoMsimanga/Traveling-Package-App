@@ -3,9 +3,9 @@ package com.example.travelingpackage.ui.logic
 
 
 data class PackingItem (
-    var name : String,
-    var category : String,
-    var quantity : Int,
+    var song : String,
+    var artist : String,
+    var rating : Int,
     var comment: String,
 
 )

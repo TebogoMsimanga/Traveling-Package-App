@@ -37,15 +37,15 @@ fun AddingItems(
 ) {
 
     //variables for storing data that can change
-    var itemName by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf("") }
-    var quantity by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var artist by remember { mutableStateOf("") }
+    var rating by remember { mutableStateOf("") }
     var comment by remember { mutableStateOf("") }
 
     //variables for storing errors
-    var itemNameError by remember { mutableStateOf<String?>(null) }
-    var categoryError by remember { mutableStateOf<String?>(null) }
-    var quantityError by remember { mutableStateOf<String?>(null) }
+    var nameError by remember { mutableStateOf<String?>(null) }
+    var artistError by remember { mutableStateOf<String?>(null) }
+    var ratingError by remember { mutableStateOf<String?>(null) }
     var commentError by remember { mutableStateOf<String?>(null) }
 
 
@@ -60,18 +60,18 @@ fun AddingItems(
 
             {
                 OutlinedTextField(
-                    value = itemName,
+                    value = name,
                     onValueChange = {
-                        itemName = it;
-                        itemNameError = null
+                        name = it;
+                        nameError = null
                     },
-                    label = { Text("Item Name") },
-                    isError = itemNameError != null,
+                    label = { Text("name") },
+                    isError = nameError != null,
                     modifier = Modifier
                         .fillMaxWidth()
                 )
 
-                itemNameError?.let {
+                nameError?.let {
                     Text(
                         text = it,
                         color = MaterialTheme.colorScheme.error,
@@ -84,18 +84,18 @@ fun AddingItems(
                 )
 
                 OutlinedTextField(
-                    value = category,
+                    value = artist,
                     onValueChange = {
-                        category = it;
-                        categoryError = null
+                        artist = it;
+                        artistError = null
                     },
-                    label = { Text("Category") },
-                    isError = categoryError != null,
+                    label = { Text("artist") },
+                    isError = artistError != null,
                     modifier = Modifier
                         .fillMaxWidth()
                 )
 
-                categoryError?.let {
+                artistError?.let {
                     Text(
                         it,
                         color = MaterialTheme.colorScheme.error,
@@ -107,20 +107,20 @@ fun AddingItems(
 
                 )
                 OutlinedTextField(
-                    value = quantity,
+                    value = rating,
                     onValueChange = {
-                        quantity = it;
-                        quantityError = null
+                        rating = it;
+                        ratingError = null
                     },
-                    label = { Text("Quantity") },
-                    isError = quantityError != null,
+                    label = { Text("Rating") },
+                    isError = ratingError != null,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp)
 
                 )
-                quantityError ?.let {
+                ratingError ?.let {
                     Text(
                         it,
                         color=MaterialTheme.colorScheme.error
@@ -153,27 +153,26 @@ fun AddingItems(
                 Row {
                     Button(
                         onClick = {
-                            itemNameError = null
-                            categoryError = null
-                            quantityError =null
+                            nameError = null
+                            artistError =null
                             commentError = null
 
                             var isValid = true
-                            if (itemName.isBlank()) {
-                                itemNameError = "Name field is empty"
+                            if (name.isBlank()) {
+                                nameError = "Name field is empty"
                                 isValid = false
 
                             }
-                            if (category.isBlank()){
-                                categoryError = "category field is empty"
+                            if (artist.isBlank()){
+                                artistError = "category field is empty"
                                 isValid = false
                             }
                             //convert user input to number
-                            val intQuantity = quantity.toIntOrNull()
+                            val intRating = rating.toIntOrNull()
                             // if the user does not input anything then display error massage
                             // user input must always be a positive number
-                            if (intQuantity == null || intQuantity <= 0){
-                                quantityError = "quantity field is empty"
+                            if (intRating == null || intRating <= 5){
+
                                 isValid = false
 
 
@@ -183,14 +182,16 @@ fun AddingItems(
                                 isValid = false
                             }
                             if (isValid) {
+                                val intRating = null
                                 onAddItem(
                                     PackingItem(
-                                        name = itemName,
-                                        category = category,
+                                        song = name,
+                                        artist = artist,
                                         // this field only accepts positive numbers
                                         //app fails to process if its not a positive number
-                                        quantity = intQuantity ?: 0,
-                                        comment = comment
+                                        rating = intRating ?: 5,
+                                        comment = comment,
+
                                     )
                                 )
                                 onDismiss()
