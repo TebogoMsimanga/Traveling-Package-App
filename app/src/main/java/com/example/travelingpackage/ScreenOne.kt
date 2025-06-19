@@ -58,7 +58,7 @@ fun ScreenOne() {
 
         ) {
             Text(
-                text = "Add to packing list"
+                text = "Add song"
             )
         }
         Spacer(
@@ -72,7 +72,7 @@ fun ScreenOne() {
 
             ) {
             Text(
-                text = "Show packing list"
+                text = "Show play list"
             )
         }
         Spacer(

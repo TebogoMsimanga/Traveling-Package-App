@@ -9,10 +9,10 @@ class ListViewModel: ViewModel(){
     val packingList: List<PackingItem> get() = _privateList
 
     init {
-        _privateList.add(PackingItem("Sneakers", "Shoes", 3, "For running"))
-        _privateList.add(PackingItem("Ear rings", "Accessories", 5, "Dinner"))
-        _privateList.add(PackingItem("Make up", "Toiletry", 1, "Face beat"))
-        _privateList.add(PackingItem("Dresses", "Clothes", 5, "Dates"))
+        _privateList.add(PackingItem("Residual", "Chris Brown", 3, "Favourite"))
+        _privateList.add(PackingItem("Love me", "Justin Bieber", 5, "dance music"))
+        _privateList.add(PackingItem("Burn", "Usher", 1, "Sad song"))
+        _privateList.add(PackingItem("Run this world", "Rihanna", 5, "fun song"))
     }
     fun addItem (item: PackingItem){
         _privateList.add(item)
